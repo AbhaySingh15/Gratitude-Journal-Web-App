@@ -26,10 +26,10 @@
     </div>
     </div>
      <div class="d-flex align-items-center flex-column">
-         <div class="card text-bg-light mb-3" style="max-width: 18rem;" th:each="GratitudeDate :${GratitudeDateList}">
-             <div class="card-header" th:text="${GratitudeDate.date}"></div>
+         <div class="card text-bg-light mb-3" style="max-width: 18rem;" th:each="GratitudeData :${GratitudeDataList}">
+             <div class="card-header" th:text="${GratitudeData.key}"></div>
              <div class="card-body">
-                 <p class="card-text"></p>
+                 <p class="card-text" th:text="${GratitudeData.value}"></p>
              </div>
          </div>
     </div>

@@ -1,12 +1,14 @@
 package com.abhay.gratitude_journal_project.model;
 
 import javax.persistence.*;
+import java.util.HashMap;
+import java.util.List;
 
 @Entity
 @Table(name = "Gratitudes")
 public class GratitudeData {
 
-    @Column(name = "GratitudeText")
+    @Column(name = "gratitude_text")
     private String gratitudeText;
 
     @ManyToOne

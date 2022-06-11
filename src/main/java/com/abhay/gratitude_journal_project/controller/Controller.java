@@ -12,7 +12,7 @@ public class Controller {
     GratitudeService gratitudeService;
     @GetMapping("/")
     public String getHomePage(Model model){
-        model.addAttribute("GratitudeDateList",gratitudeService.getListOfGratitudeDate());
+        model.addAttribute("GratitudeDataList",gratitudeService.getListOfGratitudeData());
         return "homePage";
     }
 
