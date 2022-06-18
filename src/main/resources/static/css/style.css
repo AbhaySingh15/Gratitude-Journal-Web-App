@@ -1,0 +1,17 @@
+body, html {
+    height: 100%;
+}
+
+.bgImg {
+    /* The image used */
+    background-image: url("../assets/background.jpg");
+
+    /* Full height */
+    height: 100%;
+    background-color: aqua;
+
+    /* Center and scale the image nicely */
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}

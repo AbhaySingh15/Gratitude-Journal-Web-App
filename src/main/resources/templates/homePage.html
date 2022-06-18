@@ -7,32 +7,36 @@
 </head>
 <body>
 <div class="container">
-<div class="d-flex align-items-center my-3 flex-column">
-    <h2 >Gratitude Journal</h2>
+<div class="d-flex align-items-center my-4 flex-column">
+    <h2 class="mb-3">Gratitude Journal</h2>
 
 <!--    add gratitude page button-->
 <!--    <a th:href="@{/addGratitude}" class="btn btn-primary">Add Gratitude</a>-->
 
+    <form th:action="@{/gratitudeInput}" method="get" th:object="${gratitudeInputObject}">
     <div class="row g-3 align-items-center">
         <div class="col-auto">
             <label for="gratitudeInput" class="col-form-label">Today you are grateful for</label>
         </div>
         <div class="col-auto">
-            <input type="text" id="gratitudeInput" class="form-control">
+            <input type="text" id="gratitudeInput" class="form-control" th:field ="*{gratitudeText}">
         </div>
         <div class="col-auto">
-            <a th:href="@{/}" class="btn btn-primary">submit</a>
+            <button type="submit" class="btn btn-primary">Submit</button>
         </div>
     </div>
-    </div>
-     <div class="d-flex align-items-center flex-column">
+    </form>
+     <div class="d-flex align-items-center flex-column my-4">
          <div class="card text-bg-light mb-3" style="max-width: 18rem;" th:each="GratitudeData :${GratitudeDataList}">
              <div class="card-header" th:text="${GratitudeData.key}"></div>
              <div class="card-body">
-                 <p class="card-text" th:text="${GratitudeData.value}"></p>
+                 <ol class="list-group list-group-numbered">
+                     <li class="list-group-item" th:each="GratitudeText :${GratitudeData.value}" th:text="${GratitudeText}"></li>
+                 </ol>
              </div>
          </div>
-    </div>
+     </div>
+</div>
 </div>
 </body>
 </html>

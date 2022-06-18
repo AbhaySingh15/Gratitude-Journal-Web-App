@@ -10,10 +10,13 @@ import java.util.List;
 
 @Repository
 public interface GratitudeDateRepository extends JpaRepository<GratitudeDate,Integer> {
-    @Query(value = "select id from GratitudeDate")
+    @Query(value = "select id from GratitudeDate order by id desc")
     List<Integer> getListOfDateIds();
 
     @Query(value = "Select date from GratitudeDate where id = :#{#id}")
     Date getGratitudeDateById(@Param("id") int id);
+
+    @Query(value = "select max(id) as id from GratitudeDate")
+    int lastInsertedId();
 
 }

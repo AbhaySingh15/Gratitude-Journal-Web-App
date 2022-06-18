@@ -1,24 +1,22 @@
 package com.abhay.gratitude_journal_project.model;
 
 import javax.persistence.*;
-import java.util.HashMap;
-import java.util.List;
 
 @Entity
 @Table(name = "Gratitudes")
-public class GratitudeData {
+public class Gratitude {
 
     @Column(name = "gratitude_text")
     private String gratitudeText;
 
-    @ManyToOne
-    @PrimaryKeyJoinColumn
-    private GratitudeDate gratitudeDate;
-
     @Id
+    @Column(name = "gratitude_id")
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "Id")
-    private int id;
+    private int gratitude_id;
+
+    @ManyToOne
+    @PrimaryKeyJoinColumn(name = "gratitude_date_id",referencedColumnName = "id")
+    private GratitudeDate gratitudeDate;
 
     public String getGratitudeText() {
         return gratitudeText;
@@ -35,12 +33,12 @@ public class GratitudeData {
     public void setGratitudeDate(GratitudeDate gratitudeDate) {
         this.gratitudeDate = gratitudeDate;
     }
-
-    public int getId() {
-        return id;
+    public int getGratitude_id() {
+        return gratitude_id;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setGratitude_id(int gratitude_id) {
+        this.gratitude_id = gratitude_id;
     }
+
 }
