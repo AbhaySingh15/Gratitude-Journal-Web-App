@@ -27,23 +27,23 @@ public class GratitudeServiceImpl implements GratitudeService {
         // getting list of ids from DateDB
        List<Integer> listOfDateIds = gratitudeDateRepository.getListOfDateIds();
        // Creating map to store date and list of gratitude associated with that date
-       Map<String, List<String>> gratitudeGroupedByDate = new TreeMap<>();
+       Map<String, List<String>> gratitudeGroupedByDate = new TreeMap<>(Collections.reverseOrder());
        // iterating over list of ids to find date associated with each id and then storing date and list of gratitude
         // for that date in a map.
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-       for(Integer id: listOfDateIds){
+        for (Integer id: listOfDateIds) {
             List<String> gratitudeListById = gratitudeRepository.getGratitudeListById(id);
             Date gratitudeDateById = gratitudeDateRepository.getGratitudeDateById(id);
-            gratitudeGroupedByDate.put(sdf.format(gratitudeDateById),gratitudeListById);
-       }
-       // returning the map with formatted date as key and list of gratitude for that date
+            gratitudeGroupedByDate.put(sdf.format(gratitudeDateById), gratitudeListById);
+        }
+//        returning the map with formatted date as key and list of gratitude for that date
        return gratitudeGroupedByDate;
     }
 
     @Override
     public void insertGratitudeIntoDB(Gratitude gratitude) {
 
-//        Date todayDate=new GregorianCalendar(2022, Calendar.JUNE,16).getTime();
+//       Date todayDate=new GregorianCalendar(2022, Calendar.JUNE,18).getTime();
         Date todayDate = new Date();
 
         try {
@@ -54,7 +54,7 @@ public class GratitudeServiceImpl implements GratitudeService {
             SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
             if (sdf.format(todayDate).equals(sdf.format(lastInsertedDate))) {
                 // If the latest date in dateDB and today's date is equal that means we just have to
-                // add gratitude's for that date.
+                // add gratitude for this date.
                 gratitude.setGratitudeDate(lastInsertedGratitudeDateObject);
                 gratitudeRepository.save(gratitude);
             }else{
