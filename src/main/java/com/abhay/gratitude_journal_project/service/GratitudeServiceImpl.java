@@ -27,7 +27,7 @@ public class GratitudeServiceImpl implements GratitudeService {
         // getting list of ids from DateDB
        List<Integer> listOfDateIds = gratitudeDateRepository.getListOfDateIds();
        // Creating map to store date and list of gratitude associated with that date
-       Map<String, List<String>> gratitudeGroupedByDate = new TreeMap<>(Collections.reverseOrder());
+       Map<String, List<String>> gratitudeGroupedByDate = new LinkedHashMap<>();
        // iterating over list of ids to find date associated with each id and then storing date and list of gratitude
         // for that date in a map.
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
@@ -36,7 +36,7 @@ public class GratitudeServiceImpl implements GratitudeService {
             Date gratitudeDateById = gratitudeDateRepository.getGratitudeDateById(id);
             gratitudeGroupedByDate.put(sdf.format(gratitudeDateById), gratitudeListById);
         }
-//        returning the map with formatted date as key and list of gratitude for that date
+       // returning the map with formatted date as key and list of gratitude for that date
        return gratitudeGroupedByDate;
     }
 
@@ -63,7 +63,7 @@ public class GratitudeServiceImpl implements GratitudeService {
             }
          catch (Exception e) {
             // When adding gratitude's for the first time
-            System.out.println("No last inserted record found,creating and inserting new gratitudeDate object to DateDB");
+            System.out.println("No last inserted record found,creating and saving new gratitudeDate object to DateDB");
             createAndSetGratitudeDateForGratitude(todayDate,gratitude);
         }
     }

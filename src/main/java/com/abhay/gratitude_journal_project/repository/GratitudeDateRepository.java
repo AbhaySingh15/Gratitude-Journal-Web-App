@@ -10,7 +10,7 @@ import java.util.List;
 
 @Repository
 public interface GratitudeDateRepository extends JpaRepository<GratitudeDate,Integer> {
-    @Query(value = "select id from GratitudeDate order by id")
+    @Query(value = "select id from GratitudeDate order by date desc")
     List<Integer> getListOfDateIds();
 
     @Query(value = "Select date from GratitudeDate where id = :#{#id}")
