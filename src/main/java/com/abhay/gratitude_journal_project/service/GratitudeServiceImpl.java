@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.*;
 
 @Service
@@ -45,6 +46,7 @@ public class GratitudeServiceImpl implements GratitudeService {
 
 //       Date todayDate=new GregorianCalendar(2022, Calendar.JUNE,18).getTime();
         Date todayDate = new Date();
+
 
         try {
             // when there is no record in the database getReferenceId will throw exception as it couldn't

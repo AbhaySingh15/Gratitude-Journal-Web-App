@@ -3,12 +3,14 @@ package com.abhay.gratitude_journal_project.controller;
 import com.abhay.gratitude_journal_project.model.Gratitude;
 import com.abhay.gratitude_journal_project.service.GratitudeService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import javax.validation.Valid;
 
-@org.springframework.stereotype.Controller
-public class Controller {
+@Controller
+public class MainController {
     @Autowired
     GratitudeService gratitudeService;
     @GetMapping("/")
@@ -27,7 +29,7 @@ public class Controller {
     }
 
     @GetMapping("/gratitudeInput")
-    public String gratitudeInput(@ModelAttribute("gratitudeInputObject") Gratitude gratitudeInputObject){
+    public String gratitudeInput(@Valid @ModelAttribute("gratitudeInputObject") Gratitude gratitudeInputObject){
         gratitudeService.insertGratitudeIntoDB(gratitudeInputObject);
         return "redirect:/";
     }

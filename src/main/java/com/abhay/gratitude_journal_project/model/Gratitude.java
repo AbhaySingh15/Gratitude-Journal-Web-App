@@ -1,12 +1,16 @@
 package com.abhay.gratitude_journal_project.model;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "Gratitudes")
 public class Gratitude {
 
     @Column(name = "gratitude_text")
+    @NotNull
+    @NotBlank
     private String gratitudeText;
 
     @Id
